@@ -25,8 +25,7 @@ public class ProductController {
 
     @GetMapping() // localhost:8080/products
     public List<Product> getAllProducts() {
-//        restTemplate.delete(null);
-        return new ArrayList<>();
+        return productService.getAllProducts();
     }
 
     @GetMapping("/{id}")
