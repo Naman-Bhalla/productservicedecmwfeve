@@ -1,2 +1,7 @@
-package com.scaler.productservicedecmwfeve.controllers;public class CategoryController {
+package com.scaler.productservicedecmwfeve.controllers;
+
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class CategoryController {
 }
