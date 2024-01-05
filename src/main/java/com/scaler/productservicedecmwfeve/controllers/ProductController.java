@@ -1,7 +1,9 @@
 package com.scaler.productservicedecmwfeve.controllers;
 
+import com.scaler.productservicedecmwfeve.exceptions.ProductNotExistsException;
 import com.scaler.productservicedecmwfeve.models.Product;
 import com.scaler.productservicedecmwfeve.services.ProductService;
+import org.apache.el.stream.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.actuate.web.exchanges.HttpExchange;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -37,8 +39,20 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public Product getSingleProduct(@PathVariable("id") Long id) {
-        return productService.getSingleProduct(id);
+    public ResponseEntity<Product> getSingleProduct(@PathVariable("id") Long id) throws ProductNotExistsException {
+//        throw new RuntimeException("SOmething went wrong");
+//        try {
+            return new ResponseEntity<>(
+                    productService.getSingleProduct(id),
+                    HttpStatus.OK
+            );
+//        } catch (ArithmeticException exception) {
+//            ResponseEntity<Product> response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//            return response;
+//        } catch (ArrayIndexOutOfBoundsException exception) {
+//
+//        }
+
     }
 
     @PostMapping()
@@ -61,5 +75,10 @@ public class ProductController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteProduct(@PathVariable("id") Long id) {
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @ExceptionHandler(ProductNotExistsException.class)
+    public ResponseEntity<Void> handleProductNotExistException() {
+        return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     }
 }
