@@ -6,6 +6,7 @@ import com.scaler.productservicedecmwfeve.models.Category;
 import com.scaler.productservicedecmwfeve.models.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.context.annotation.Primary;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpMessageConverterExtractor;
@@ -17,7 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 
 
-@Service
+@Service("fakeStoreProductService")
 public class FakeStoreProductService implements ProductService {
     private RestTemplate restTemplate;
 
