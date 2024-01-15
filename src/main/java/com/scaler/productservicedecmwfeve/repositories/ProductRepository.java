@@ -2,7 +2,10 @@ package com.scaler.productservicedecmwfeve.repositories;
 
 import com.scaler.productservicedecmwfeve.models.Category;
 import com.scaler.productservicedecmwfeve.models.Product;
+import com.scaler.productservicedecmwfeve.repositories.projections.ProductWithIdAndTitle;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.lang.NonNullApi;
 import org.springframework.stereotype.Repository;
 
@@ -32,6 +35,12 @@ public interface ProductRepository
     // this will return a null ifno product matches the id
 
     Product save(Product product);
+
+    @Query("select p.id as id, p.title as title from Product p where p.id = :id")
+    List<ProductWithIdAndTitle> somethingsomething(@Param("id") Long id);
+
+    @Query(value = "select p.id as id, p.title as title from product p where p.id = :id", nativeQuery = true)
+    List<ProductWithIdAndTitle> somesome2(@Param("id") Long id);
 }
 
 // 1. CategoryRepository.findById()
