@@ -14,6 +14,8 @@ public class Category extends BaseModel {
     // being already mapped by an attribute called category
     private List<Product> products;
     private String name;
+    private String description;
+    private String imageUrl;
 
 //    public String getName() {
 //        System.out.println( userName + " has called this method.");

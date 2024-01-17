@@ -16,6 +16,13 @@ public class Product extends BaseModel {
     private Category category;
     private String description;
     private String imageUrl;
+    private int numberOfSales;
+
+    // public static ProductDto toDto() {
+    //
+    // }
+
+    //
 //    private int sachinQuestionsAsked;
 }
 
