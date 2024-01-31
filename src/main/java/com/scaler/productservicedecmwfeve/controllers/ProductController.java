@@ -34,8 +34,17 @@ public class ProductController {
     public ResponseEntity<List<Product>> getAllProducts() {
 //        restTemplate.delete(null);
 
+        List<Product> products = productService.getAllProducts(); // o p q
+
+        List<Product> finalProducts = new ArrayList<>();
+
+        for (Product p: products) { // o  p q
+            p.setTitle("Hello" + p.getTitle());
+            finalProducts.add(p);
+        }
+
         ResponseEntity<List<Product>> response = new ResponseEntity<>(
-                productService.getAllProducts(), HttpStatus.FORBIDDEN
+                finalProducts, HttpStatus.FORBIDDEN
         );
         return response;
     }
@@ -77,8 +86,8 @@ public class ProductController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @ExceptionHandler(ProductNotExistsException.class)
-    public ResponseEntity<Void> handleProductNotExistException() {
-        return new ResponseEntity<>(HttpStatus.FORBIDDEN);
-    }
+//    @ExceptionHandler(ProductNotExistsException.class)
+//    public ResponseEntity<Void> handleProductNotExistException() {
+//        return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+//    }
 }

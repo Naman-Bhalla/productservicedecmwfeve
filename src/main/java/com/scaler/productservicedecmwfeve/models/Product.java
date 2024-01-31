@@ -14,6 +14,8 @@ public class Product extends BaseModel {
     private double price;
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Category category;
+
+    @Column(length = 700)
     private String description;
     private String imageUrl;
     private int numberOfSales;
