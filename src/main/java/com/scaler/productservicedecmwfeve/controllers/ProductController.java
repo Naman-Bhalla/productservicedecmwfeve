@@ -1,5 +1,8 @@
 package com.scaler.productservicedecmwfeve.controllers;
 
+import com.scaler.productservicedecmwfeve.commons.AuthenticationCommons;
+import com.scaler.productservicedecmwfeve.dtos.Role;
+import com.scaler.productservicedecmwfeve.dtos.UserDto;
 import com.scaler.productservicedecmwfeve.exceptions.ProductNotExistsException;
 import com.scaler.productservicedecmwfeve.models.Product;
 import com.scaler.productservicedecmwfeve.services.FakeStoreProductService;
@@ -23,16 +26,37 @@ import java.util.List;
 public class ProductController {
     private ProductService productService;
     private RestTemplate restTemplate;
+    private AuthenticationCommons authenticationCommons;
 
     @Autowired
-    public ProductController(@Qualifier("selfProductService") ProductService productService, RestTemplate restTemplate) {
+    public ProductController(@Qualifier("selfProductService") ProductService productService,
+                             RestTemplate restTemplate,
+                             AuthenticationCommons authenticationCommons) {
         this.productService = productService;
         this.restTemplate = restTemplate;
+        this.authenticationCommons = authenticationCommons;
     }
 
     @GetMapping() // localhost:8080/products
-    public ResponseEntity<List<Product>> getAllProducts() {
+    public ResponseEntity<List<Product>> getAllProducts(@RequestHeader("AuthenticationToken") String token) {
 //        restTemplate.delete(null);
+
+        UserDto userDto = authenticationCommons.validateToken(token);
+
+        if (userDto == null) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
+
+        boolean isAdmin = false;
+
+        for (Role role: userDto.getRoles()) {
+            if (role.getName().equals("ADMIN")) {
+                isAdmin = true;
+                break;
+            }
+        }
+
+        if (!isAdmin) return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 
         List<Product> products = productService.getAllProducts(); // o p q
 

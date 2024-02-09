@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Primary;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpMessageConverterExtractor;
 import org.springframework.web.client.RequestCallback;
@@ -43,10 +45,14 @@ public class FakeStoreProductService implements ProductService {
     @Override
     public Product getSingleProduct(Long id) throws ProductNotExistsException {
 //        int a = 1 / 0;
-        FakeStoreProductDto productDto = restTemplate.getForObject(
+        ResponseEntity<FakeStoreProductDto> productDto = restTemplate.getForEntity(
                 "https://fakestoreapi.com/products/" + id,
                 FakeStoreProductDto.class
         );
+
+        if (productDto.getStatusCode() != HttpStatusCode.valueOf(200)) {
+            // log this to command line
+        }
 
         if (productDto == null) {
             throw new ProductNotExistsException(
@@ -54,7 +60,7 @@ public class FakeStoreProductService implements ProductService {
             );
         }
 
-        return convertFakeStoreProductToProduct(productDto);
+        return convertFakeStoreProductToProduct(productDto.getBody());
     }
 
     @Override

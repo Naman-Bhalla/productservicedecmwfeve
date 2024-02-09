@@ -33,4 +33,9 @@ public class ExceptionHandlers {
 
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ExceptionDto> genericException(Exception e) {
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
