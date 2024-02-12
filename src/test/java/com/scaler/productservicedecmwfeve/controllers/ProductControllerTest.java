@@ -88,10 +88,10 @@ class ProductControllerTest {
             ).thenReturn(
                     Optional.empty()
             );
-
-            when(
-                    productService1.getSingleProduct(10L)
-            ).then();
+//
+//            when(
+//                    productService1.getSingleProduct(10L)
+//            ).then();
 
             // act
             assertThrows(
