@@ -11,69 +11,69 @@ import java.time.temporal.TemporalUnit;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest
+//@SpringBootTest
 public class RandomTest {
-
-    @Autowired
-    private ProductController productController;
-
-    @Test
-    void testOnePlusOneIsTwo() {
-        // act
-        int i = 1 + 1;
-
-        // assert
-        assert i == 2;
-        assert i * i == 4;
-
-//        assertTrue(i == 2);
 //
-//        assertEquals(i, 2);
-////        assertThrows()
-////        assertTrue();
-////            assert i == null;
-//            assertNull(i);
+//    @Autowired
+//    private ProductController productController;
 //
-//            int[] ans = rotatedArray([1, 2, 3, 4]);
-//            int[] expectedAns = [5, 3, 2, 1];
+//    @Test
+//    void testOnePlusOneIsTwo() {
+//        // act
+//        int i = 1 + 1;
 //
-//            for (int i = 0; i < ans.length; ++i) {
-//                assert ans[i] == expectedAns[i];
-//            }
+//        // assert
+//        assert i == 2;
+//        assert i * i == 4;
 //
-//            assertArrayEquals(expectedAns, ans);
+////        assertTrue(i == 2);
+////
+////        assertEquals(i, 2);
+//////        assertThrows()
+//////        assertTrue();
+//////            assert i == null;
+////            assertNull(i);
+////
+////            int[] ans = rotatedArray([1, 2, 3, 4]);
+////            int[] expectedAns = [5, 3, 2, 1];
+////
+////            for (int i = 0; i < ans.length; ++i) {
+////                assert ans[i] == expectedAns[i];
+////            }
+////
+////            assertArrayEquals(expectedAns, ans);
+////
+////            assertTimeout(
+////                    Duration.of(2L, SECONDS),
+////                    someMethod()
+////            );
+////
+////            assertInstanceOf(
+////                    Pigeon.class,
+////                    BirdFactory.getByName("Pigeon")
+////            );
+////
+////        assertInstanceOf(
+////                Penguin.class,
+////                BirdFactory.getByName("Penguin")
+////        );
 //
-//            assertTimeout(
-//                    Duration.of(2L, SECONDS),
-//                    someMethod()
-//            );
+////        assert i == 3;
+//        i = 7;
 //
-//            assertInstanceOf(
-//                    Pigeon.class,
-//                    BirdFactory.getByName("Pigeon")
-//            );
+//        assertEquals(2, i);
+//    }
 //
-//        assertInstanceOf(
-//                Penguin.class,
-//                BirdFactory.getByName("Penguin")
+//
+//    @Test
+//    void testTwoTwoZaFour() {
+//        int i = 2 * 2;
+//
+//        assertEquals(
+//                4,
+//                i
 //        );
-
-//        assert i == 3;
-        i = 7;
-
-        assertEquals(2, i);
-    }
-
-
-    @Test
-    void testTwoTwoZaFour() {
-        int i = 2 * 2;
-
-        assertEquals(
-                4,
-                i
-        );
-    }
+//    }
 }
 
 // a test case is nothing but a method
@@ -91,3 +91,5 @@ public class RandomTest {
 // what is expected should be first parameter, what is the ans should be seocnd
 
 // Break till 10:12 PM
+
+// java -jar name-of-jar.jar

@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.scaler</groupId>
     <artifactId>productservicedecmwfeve</artifactId>
-    <version>0.0001-BETA</version>
+    <version>0.001-dhokla</version>
     <name>productservicedecmwfeve</name>
     <description>productservicedecmwfeve</description>
     <properties>
